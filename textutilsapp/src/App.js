@@ -3,13 +3,15 @@ import './App.css';
 import Alert from './components/Alert';
 import NavBar from './components/NavBar';
 import TextForm from './components/TextForm';
-import About from './components/About'
+import About from './components/About';
+import Error404 from './components/Error404';
 import {
   //BrowserRouter as Router,
   HashRouter as Router,
   Route,
   Routes,
 } from "react-router-dom";
+
 
 function App() {
 
@@ -36,7 +38,8 @@ function App() {
 
   }
 
-  const toggleMode = () => {
+  const toggleMode = (cls) => {
+    console.log(cls);
     if (mode === 'light') {
       setMode('dark');
       document.body.style.backgroundColor = '#042743';
@@ -57,10 +60,11 @@ function App() {
         <Alert alert={alert} />
         <div className="container my-3">
           <Routes>
-            <Route path="/about" exact element={<About />} />
+            <Route path="/about" exact element={<About heading="About TextUtils Tools - Text Manipulation Tools" mode={mode} />} />
           
-            <Route path="/" exact element={<TextForm heading="Enter text to Analyze here" mode={mode} showAlert={showAlert} />} />
-              
+            <Route path="/" exact element={<TextForm heading="Try TextUtils - Word Counter, Character Counter, Remove extra spaces" mode={mode} showAlert={showAlert} />} />
+
+            <Route path="/error404" exact element={<Error404/>} />  
           </Routes>
         </div>
       </Router>
